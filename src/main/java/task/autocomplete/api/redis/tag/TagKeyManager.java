@@ -23,7 +23,7 @@ public class TagKeyManager implements KeyManager {
 	public String generateKey(final String word) {
 		if (validate(word) == false) return "";
 		
-		String prefix = word.substring(0, 1), generateKey = KEY_PREFIX + prefix + KEY_DELEMETER + word.trim().length();
+		String prefix = word.trim().substring(0, 1), generateKey = KEY_PREFIX + prefix + KEY_DELEMETER + word.trim().length();
 		if (isExistKey(generateKey, word) == false) {
 			stringRedisTemplate.opsForZSet().add(generateKey, prefix, 0);
 		}
@@ -31,12 +31,12 @@ public class TagKeyManager implements KeyManager {
 	}
 	
 	private boolean isExistKey(final String key, final String word){
-		Long exist = stringRedisTemplate.opsForZSet().rank(key, word);
+		Long exist = stringRedisTemplate.opsForZSet().rank(key, word.trim());
 		return exist != null && exist != 0;
 	}
 	
 	protected boolean validate(String word){
-		if (word == null || word.isEmpty()) {
+		if (word == null || word.trim().isEmpty()) {
 			logger.warn("Request word is invalid. word={}", word);
 			return false;
 		}

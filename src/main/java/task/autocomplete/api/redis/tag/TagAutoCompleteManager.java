@@ -35,14 +35,14 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 	@Override
 	public List<RedisVO> complete(final String word, final double min, final double max) {
 		List<RedisVO> results = new ArrayList<RedisVO>();
-		int wordLength = word.length();
+		int wordLength = word.trim().length();
 		if (word == null || wordLength == 0) return results;
 		
 		TagKeyManagerService service = (TagKeyManagerService) tagKeyManagerService;
 		for (int i = wordLength; i < 30; i++) {
 			if (results.size() == configure.getCount()) break; 
 			
-			String rewriteKey = service.getKeyWithoutLength(word) + i;
+			String rewriteKey = service.getKeyWithoutLength(word.trim()) + i;
 			Set<TypedTuple<String>> rangeResultsWithScore = stringRedisTemplate
 					.opsForZSet()
 					.reverseRangeByScoreWithScores(rewriteKey, min, max, 0, configure.getCount());
@@ -53,7 +53,7 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 				
 				String value = typedTuple.getValue();
 				int minLength = Math.min(value.length(), wordLength);
-				if (value.endsWith(configure.getDelemeter()) && value.startsWith(word.substring(0, minLength))) {
+				if (value.endsWith(configure.getDelemeter()) && value.startsWith(word.trim().substring(0, minLength))) {
 					results.add(new RedisVO(value.replace(configure.getDelemeter(), ""), typedTuple.getScore().intValue()));
 				} 
 			}
@@ -68,9 +68,9 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 		if (key == null) return false;
 		
 		if (tagKeyManagerService.existKey(word) == false) {
-			stringRedisTemplate.opsForZSet().add(key, word + configure.getDelemeter(), score);
+			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelemeter(), score);
 			for (int index = 1; index < word.length(); index++) {
-				stringRedisTemplate.opsForZSet().add(key, word.substring(0, index - 1), 0);
+				stringRedisTemplate.opsForZSet().add(key, word.trim().substring(0, index - 1), 0);
 			}
 		}
 		return true;
@@ -81,7 +81,7 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 		String key = tagKeyManagerService.generateKey(word);
 		if (key == null) return 0.0;
 		
-		return stringRedisTemplate.opsForZSet().incrementScore(key, word + configure.getDelemeter(), 1);
+		return stringRedisTemplate.opsForZSet().incrementScore(key, word.trim() + configure.getDelemeter(), 1);
 	}
 
 	@Override
