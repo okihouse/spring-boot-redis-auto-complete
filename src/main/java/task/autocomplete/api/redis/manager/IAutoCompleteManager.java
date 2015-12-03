@@ -10,7 +10,7 @@ public interface IAutoCompleteManager {
 	
 	public List<RedisVO> complete(final String word, final double min, final double max);
 	
-	public Boolean addWord(final String word, final int score);
+	public Boolean addWord(final String word);
 	
 	public Double incr(final String word);
 	

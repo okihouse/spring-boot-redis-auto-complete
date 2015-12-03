@@ -63,12 +63,12 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 	}
 
 	@Override
-	public Boolean addWord(String word, final int score) {
+	public Boolean addWord(String word) {
 		String key = tagKeyManagerService.generateKey(word);
 		if (key == null) return false;
 		
 		if (tagKeyManagerService.existKey(word) == false) {
-			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelemeter(), score);
+			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelemeter(), 0);
 			for (int index = 1; index < word.length(); index++) {
 				stringRedisTemplate.opsForZSet().add(key, word.trim().substring(0, index - 1), 0);
 			}

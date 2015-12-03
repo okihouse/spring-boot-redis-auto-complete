@@ -3,6 +3,7 @@ package task.autocomplete.api.error;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +17,7 @@ public class ErrorHandlerController {
 		ErrorVO errorVO = new ErrorVO();
 		errorVO.setCode(-1);
 		errorVO.setMessage(exception.getMessage());
+		response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
 		return errorVO;
 	}
 	

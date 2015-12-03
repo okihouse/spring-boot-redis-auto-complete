@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import task.autocomplete.api.redis.manager.IAutoCompleteManager;
 import task.autocomplete.api.redis.vo.RedisVO;
+import task.autocomplete.api.vo.ResponseVO;
 
 @RestController
 public class TestController {
@@ -18,9 +19,23 @@ public class TestController {
 	@Autowired
 	private IAutoCompleteManager tagAutoCompleteManager;
 	
-	@RequestMapping(value = "/tag/{word}" , method = RequestMethod.GET)
+	@RequestMapping(value = "/api/{word}" , method = RequestMethod.GET)
 	@ResponseBody
-	public List<RedisVO> redis(@PathVariable("word") String word) {
+	public List<RedisVO> complete(@PathVariable("word") String word) {
         return tagAutoCompleteManager.complete(word);
+    }
+	
+	@RequestMapping(value = "/api/add/{word}" , method = RequestMethod.PUT)
+	@ResponseBody
+	public ResponseVO add(@PathVariable("word") String word) {
+        tagAutoCompleteManager.addWord(word);
+        return new ResponseVO();
+    }
+	
+	@RequestMapping(value = "/api/{word}" , method = RequestMethod.POST)
+	@ResponseBody
+	public ResponseVO incr(@PathVariable("word") String word) {
+		tagAutoCompleteManager.incr(word);
+		return new ResponseVO();
     }
 }
