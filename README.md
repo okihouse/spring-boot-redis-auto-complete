@@ -14,7 +14,7 @@ The difference from regular auto complete function is that this offers certain s
 
 it is quite useful. For example, it is able to show a number of related contents that includes the word, (just like the instagram search function).
 
-Also, It is better to set up `AutoCompeletManager` to use it in specific ways that you want.
+Also, It is better to set up `IAutoCompeletManager` to use it in specific ways that you want.
 
 
 # Requirements
