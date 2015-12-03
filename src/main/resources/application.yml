@@ -1,0 +1,9 @@
+autocomplete: 
+  min: 0
+  max: 6
+  count: 30
+  delemeter: §
+
+redis: 
+  host: 192.168.0.14 
+  port: 6380  
