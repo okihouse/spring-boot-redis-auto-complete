@@ -1,0 +1,8 @@
+language: java
+
+env:
+  - VERSION=openjdk-8-jre
+  - VERSION=openjdk-8-jdk
+
+script: mvn clean verify
+
