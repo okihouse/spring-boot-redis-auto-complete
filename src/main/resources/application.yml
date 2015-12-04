@@ -5,5 +5,5 @@ autocomplete:
   delemeter: §
 
 redis: 
-  host: 192.168.0.14 
-  port: 6380  
+  host: localhost 
+  port: 6379  
