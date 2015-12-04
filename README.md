@@ -28,7 +28,7 @@ Also, It is better to set up `IAutoCompeletManager` to use it in specific ways t
 # Usage
 1. install redis in your server or cloud server(e.g aws, azure..)
 1. fork or clone this package.
-1. update `application.yml` redis host and port.
+1. update redis host and port in `application.yml`.
 1. just run this application(STS, eclipse, intelliJ or maven).
 
 ## Sample API
