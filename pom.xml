@@ -18,7 +18,7 @@
 		<maven.test.skip>true</maven.test.skip>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<start-class>xyz.brace.api.Application</start-class>
+		<start-class>task.autocomplete.api.Application</start-class>
 		<java.version>1.8</java.version>
 	</properties>
   
