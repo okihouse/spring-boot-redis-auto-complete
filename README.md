@@ -21,8 +21,7 @@ Also, It is better to set up `IAutoCompeletManager` to use it in specific ways t
 
 # Requirements
 * Java 1.6+ (this project is set up with version 1.8)
-* [Spring boot](http://projects.spring.io/spring-boot/) 1.2.8+
-* spring-boot-starter-redis
+* [Spring boot](http://projects.spring.io/spring-boot/) 1.2.8+ (spring-boot-starter-redis)
 * [Redis](http://redis.io/) 2.4+
 
 # Usage
