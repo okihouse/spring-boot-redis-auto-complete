@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Component;
 
+import task.autocomplete.api.redis.AutoCompleteConfigure;
 import task.autocomplete.api.redis.manager.KeyManager;
 
 @Component(value = "tagKeyManager")
@@ -19,19 +20,22 @@ public class TagKeyManager implements KeyManager {
 	@Autowired
 	private StringRedisTemplate stringRedisTemplate;
 	
+	@Autowired
+	private AutoCompleteConfigure configure;
+	
 	@Override
 	public String generateKey(final String word) {
 		if (validate(word) == false) return "";
 		
-		String prefix = word.trim().substring(0, 1), generateKey = KEY_PREFIX + prefix + KEY_DELEMETER + word.trim().length();
+		String generateKey = getKey(word);
 		if (isExistKey(generateKey, word) == false) {
-			stringRedisTemplate.opsForZSet().add(generateKey, prefix, 0);
+			stringRedisTemplate.opsForZSet().add(generateKey, getPrefix(word), 0);
 		}
 		return generateKey;
 	}
 	
 	private boolean isExistKey(final String key, final String word){
-		Long exist = stringRedisTemplate.opsForZSet().rank(key, word.trim());
+		Long exist = stringRedisTemplate.opsForZSet().rank(key, word.trim() + configure.getDelemeter());
 		return exist != null && exist != 0;
 	}
 	
@@ -42,11 +46,21 @@ public class TagKeyManager implements KeyManager {
 		}
 		return true;
 	}
+	
+	private String getKey(final String word){
+		String generateKey = KEY_PREFIX + getPrefix(word) + KEY_DELEMETER + word.trim().length();
+		return generateKey;
+	}
+	
+	private String getPrefix(final String word){
+		String prefix = word.trim().substring(0, 1);
+		return prefix;
+	}
 
 	@Override
 	public boolean existKey(String word) {
 		if (validate(word) == false) return false;
-		return isExistKey(generateKey(word), word);
+		return isExistKey(getKey(word), word);
 	}
 
 }
