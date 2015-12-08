@@ -68,7 +68,7 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 		if (key == null) return false;
 		
 		if (tagKeyManagerService.existKey(word) == false) {
-			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelemeter(), 0);
+			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelemeter(), 1);
 			for (int index = 1; index < word.length(); index++) {
 				stringRedisTemplate.opsForZSet().add(key, word.trim().substring(0, index - 1), 0);
 			}
