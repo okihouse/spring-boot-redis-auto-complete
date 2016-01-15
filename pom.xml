@@ -56,6 +56,19 @@
             <artifactId>springloaded</artifactId>
             <scope>provided</scope>
         </dependency>
+        
+        <!-- for local and test -->
+        <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.jayway.jsonpath</groupId>
+			<artifactId>json-path</artifactId>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
   
 	<build>
