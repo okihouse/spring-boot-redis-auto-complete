@@ -14,7 +14,7 @@ import task.autocomplete.api.redis.vo.RedisVO;
 import task.autocomplete.api.vo.ResponseVO;
 
 @RestController
-public class TestController {
+public class AutocompleteController {
 
 	@Autowired
 	private IAutoCompleteManager tagAutoCompleteManager;

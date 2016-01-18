@@ -1,5 +1,12 @@
 package task.autocomplete.api;
 
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,19 +33,32 @@ public class AutoCompleteTest {
 		this.mockMvc = MockMvcBuilders.webAppContextSetup(this.webApplicationContext).build();
 	}
 	
-	//TODO make test case
-	//	GET /api/{word} // auto complete
-	//	PUT /api/add/{word} // add word
-	//	POST /api/{word} // it raises a score of the word.
+	@Test
+	public void autocomplete() throws Exception {
+		String word = "autocomplete";
+		mockMvc.perform(
+				get("/api/{word}", word))				
+					.andDo(print())
+					.andExpect(status().isOk());
+	}
 	
 	@Test
-	public void testUserDuplicateEmail() throws Exception {
-//		mockMvc.perform(
-//				get("/")				
-//				.param("", "")
-//				.contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
-//					.andDo(print())
-//					.andExpect(status().isOk())
-//					.andExpect(jsonPath("$.message").value("success"));
+	public void addWord() throws Exception {
+		String word = "autocomplete";
+		mockMvc.perform(
+				put("/api/add/{word}", word))				
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.message").value("success"));
+	}
+	
+	@Test
+	public void increaseScore() throws Exception {
+		String word = "autocomplete";
+		mockMvc.perform(
+				post("/api/{word}", word))				
+		.andDo(print())
+		.andExpect(status().isOk())
+		.andExpect(jsonPath("$.message").value("success"));
 	}
 }
