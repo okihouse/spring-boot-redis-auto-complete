@@ -35,6 +35,3 @@ Also, It is better to set up `IAutoCompeletManager` to use it in specific ways t
 - **GET** /api/{word}  // auto complete
 - **PUT** /api/add/{word} // add word
 - **POST** /api/{word}  // it raises a score of the word.
-
-## Author
-OKIHOUSE
