@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/okihouse/spring_boot_redis_auto_complete.svg?branch=master)](https://travis-ci.org/okihouse/spring_boot_redis_auto_complete)
+[![Build Status](https://travis-ci.org/okihouse/spring-boot-redis-auto-complete.svg?branch=master)](https://travis-ci.org/okihouse/spring_boot_redis_auto_complete)
 
 # Description
 해당 프로젝트는 한글, 영어, 숫자로 시작하는 단어의 자동완성기능을 구현하고 있습니다.
