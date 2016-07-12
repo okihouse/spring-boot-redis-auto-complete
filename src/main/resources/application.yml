@@ -2,7 +2,7 @@ autocomplete:
   min: 0
   max: 6
   count: 30
-  delemeter: §
+  delimiter: §
 
 redis: 
   host: localhost 

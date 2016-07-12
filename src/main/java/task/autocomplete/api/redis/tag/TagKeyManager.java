@@ -35,7 +35,7 @@ public class TagKeyManager implements KeyManager {
 	}
 	
 	private boolean isExistKey(final String key, final String word){
-		Long exist = stringRedisTemplate.opsForZSet().rank(key, word.trim() + configure.getDelemeter());
+		Long exist = stringRedisTemplate.opsForZSet().rank(key, word.trim() + configure.getDelimiter());
 		return exist != null && exist != 0;
 	}
 	

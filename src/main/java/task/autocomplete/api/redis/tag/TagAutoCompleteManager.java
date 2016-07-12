@@ -53,8 +53,8 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 				
 				String value = typedTuple.getValue();
 				int minLength = Math.min(value.length(), wordLength);
-				if (value.endsWith(configure.getDelemeter()) && value.startsWith(word.trim().substring(0, minLength))) {
-					results.add(new RedisVO(value.replace(configure.getDelemeter(), ""), typedTuple.getScore().intValue()));
+				if (value.endsWith(configure.getDelimiter()) && value.startsWith(word.trim().substring(0, minLength))) {
+					results.add(new RedisVO(value.replace(configure.getDelimiter(), ""), typedTuple.getScore().intValue()));
 				} 
 			}
 		}
@@ -68,7 +68,7 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 		if (key == null) return false;
 		
 		if (tagKeyManagerService.existKey(word) == false) {
-			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelemeter(), 1);
+			stringRedisTemplate.opsForZSet().add(key, word.trim() + configure.getDelimiter(), 1);
 			for (int index = 1; index < word.length(); index++) {
 				stringRedisTemplate.opsForZSet().add(key, word.trim().substring(0, index - 1), 0);
 			}
@@ -81,7 +81,7 @@ public class TagAutoCompleteManager implements IAutoCompleteManager {
 		String key = tagKeyManagerService.generateKey(word);
 		if (key == null) return 0.0;
 		
-		return stringRedisTemplate.opsForZSet().incrementScore(key, word.trim() + configure.getDelemeter(), 1);
+		return stringRedisTemplate.opsForZSet().incrementScore(key, word.trim() + configure.getDelimiter(), 1);
 	}
 
 	@Override

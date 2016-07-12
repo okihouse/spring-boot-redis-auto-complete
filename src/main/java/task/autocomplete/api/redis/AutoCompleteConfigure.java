@@ -16,6 +16,6 @@ public class AutoCompleteConfigure {
 
 	private long count = 30;
 	
-	private final String delemeter = "§";
+	private final String delimiter = "§";
 
 }
