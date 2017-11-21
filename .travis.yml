@@ -3,6 +3,8 @@ language: java
 jdk:
   - oraclejdk8
 
-script: build.sh
-
+script:
+  - mvn -Plibrary verify
+  - chmod u+x ./build.sh
+  - ./build.sh
 
