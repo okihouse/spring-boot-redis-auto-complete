@@ -18,7 +18,7 @@
 		<maven.test.skip>true</maven.test.skip>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-		<start-class>task.autocomplete.api.Application</start-class>
+		<start-class>net.okihouse.autocomplete.AutocompleteApplication</start-class>
 		<java.version>1.8</java.version>
 	</properties>
   
@@ -46,27 +46,21 @@
 		</dependency>	
 		
 		<dependency>
+		  <groupId>com.github.okihouse</groupId>
+		  <artifactId>autocomplete</artifactId>
+		  <version>1.0.1</version>
+		</dependency>
+		
+		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<version>1.16.6</version>
 		</dependency>
 		
-		<dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>springloaded</artifactId>
-            <scope>provided</scope>
-        </dependency>
-        
         <!-- for local and test -->
         <dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.jayway.jsonpath</groupId>
-			<artifactId>json-path</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
