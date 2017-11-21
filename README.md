@@ -4,30 +4,58 @@
 
 
 # Description
-This project offers the `Autocomplete` function for words that start with Korean, English, and numbers. (for UTF-8)
+This project supports the `automatic completion` of the word.
 
-The difference from regular auto complete function is that this offers certain scores for each words.
+Also, you can include points in the word. (like as related contents points for the Instagram)
 
-It is quite useful. For example, It is able to show a number of related contents that includes the word, (just like the instagram search function).
+
+# How to use?
+Add the following dependency in __pom.xml__
+```xml
+<dependency>
+  <groupId>com.github.okihouse</groupId>
+  <artifactId>autocomplete</artifactId>
+  <version>1.0.1</version>
+</dependency>
+```
+
+# Basic Examples
+
+```java
+
+  @Autowired
+  private StringRedisTemplate stringRedisTemplate;
+
+  private AutocompleteKeyRepository keyRepository = new AutocompleteKeyServiceImpl(stringRedisTemplate);
+  private AutocompleteRepository autocomplete = new AutocompleteServiceImpl(stringRedisTemplate, keyRepository);
+  
+  @Test
+  public void autocomplete() throws Exception {
+    String apple = "apple";
+
+    // step1. clear a "apple"
+    autocompleteRepository.clear(apple);
+
+    // step2. Add a "apple"
+    autocompleteRepository.add(apple);
+
+    // step3. auto-complete
+    List<AutocompleteData> autocompletes = autocompleteRepository.complete("app");
+
+    Assert.assertNotNull(autocompletes);
+    Assert.assertTrue(autocompletes.size() == 1);
+
+    AutocompleteData autocompleteData = autocompletes.get(0);
+
+    // Value must be "apple"
+    Assert.assertTrue(autocompleteData.getValue().equals(apple));
+    Assert.assertTrue(autocompleteData.getScore() == 1);
+  }
+
+```
+
 
 # Requirements
-* Java 1.6+ (this project is set up with version 1.8)
+* Java 1.8
 * [Spring boot](http://projects.spring.io/spring-boot/) 1.2.8+ (spring-boot-starter-redis)
 * [Redis](http://redis.io/) 2.4+
-
-# Usage & Run
-1. Install redis in your server or cloud server(e.g aws, azure..)
-1. Clone this package.
-1. Update redis host and port in `application.yml`.
-1. Just run this application(STS, eclipse, intelliJ or maven).
-
-## Sample API
-
-- **`GET`** **Autocomplete**
-> /api/{word}  
-
-- **`PUT`** **Add word**
-> /api/add/{word} 
-
-- **`POST`** **Raises a score of the word.**
-> /api/{word}  
