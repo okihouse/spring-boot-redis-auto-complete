@@ -1,9 +1,4 @@
-autocomplete: 
-  min: 0
-  max: 6
-  count: 30
-  delimiter: §
-
-redis: 
-  host: localhost 
-  port: 6379  
+spring:
+  redis:
+    host: localhost
+    port: 6379
