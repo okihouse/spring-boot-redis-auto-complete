@@ -75,7 +75,7 @@ Add the following dependency in __pom.xml__ (Java 8 maven artifact)
 ```
 
 # Requirements
-This project depend on `spring-boot` and `spring-boot-redis`
+This project depend on `spring-boot` and `spring-boot-redis` (Prerequisites)
 
 * Java 1.8
 * [Spring boot](http://projects.spring.io/spring-boot/) 1.2.8+ (spring-boot-starter-redis)
