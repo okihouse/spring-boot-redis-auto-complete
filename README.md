@@ -26,20 +26,20 @@ Add the following dependency in __pom.xml__ (Java 8 maven artifact)
 
 ```java
 
-	@Autowired
-	private StringRedisTemplate stringRedisTemplate;
+@Autowired
+private StringRedisTemplate stringRedisTemplate;
 
-	@Bean(name = {"autocompleteKeyRepository", "keyRepository"})
-	public AutocompleteKeyRepository keyRepository() {
-		AutocompleteKeyRepository keyRepository = new AutocompleteKeyServiceImpl(stringRedisTemplate);
-		return keyRepository;
-	}
+@Bean(name = {"autocompleteKeyRepository", "keyRepository"})
+public AutocompleteKeyRepository keyRepository() {
+	AutocompleteKeyRepository keyRepository = new AutocompleteKeyServiceImpl(stringRedisTemplate);
+	return keyRepository;
+}
 
-	@Bean(name = {"autocompleteRepository"})
-	public AutocompleteRepository autocompleteRepository(AutocompleteKeyRepository autocompleteKeyRepository) {
-		AutocompleteRepository autocompleteRepository = new AutocompleteServiceImpl(stringRedisTemplate, autocompleteKeyRepository);
-		return autocompleteRepository;
-	}
+@Bean(name = {"autocompleteRepository"})
+public AutocompleteRepository autocompleteRepository(AutocompleteKeyRepository autocompleteKeyRepository) {
+	AutocompleteRepository autocompleteRepository = new AutocompleteServiceImpl(stringRedisTemplate, autocompleteKeyRepository);
+	return autocompleteRepository;
+}
 
 ```
 
@@ -47,30 +47,30 @@ Add the following dependency in __pom.xml__ (Java 8 maven artifact)
 
 ```java
 
-	@Autowired
-	private AutocompleteRepository autocompleteRepository;
+@Autowired
+private AutocompleteRepository autocompleteRepository;
 
-	@Test
-	public void autocomplete() throws Exception {
-		String apple = "apple";
+@Test
+public void autocomplete() throws Exception {
+	String apple = "apple";
 
-		// step1. clear a "apple"
-		autocompleteRepository.clear(apple);
+	// step1. clear a "apple"
+	autocompleteRepository.clear(apple);
 
-		// step2. Add a "apple"
-		autocompleteRepository.add(apple);
+	// step2. Add a "apple"
+	autocompleteRepository.add(apple);
 
-		// step3. Get auto-complete words with prefix "a"
-		List<AutocompleteData> autocompletes = autocompleteRepository.complete("a");
+	// step3. Get auto-complete words with prefix "a"
+	List<AutocompleteData> autocompletes = autocompleteRepository.complete("a");
 
-		Assert.assertNotNull(autocompletes);
-		Assert.assertTrue(autocompletes.size() == 1);
+	Assert.assertNotNull(autocompletes);
+	Assert.assertTrue(autocompletes.size() == 1);
 
-		AutocompleteData autocompleteData = autocompletes.get(0);
+	AutocompleteData autocompleteData = autocompletes.get(0);
 
-		Assert.assertTrue(autocompleteData.getValue().equals(apple));
-		Assert.assertTrue(autocompleteData.getScore() == 1);
-	}
+	Assert.assertTrue(autocompleteData.getValue().equals(apple));
+	Assert.assertTrue(autocompleteData.getScore() == 1);
+}
 
 ```
 
