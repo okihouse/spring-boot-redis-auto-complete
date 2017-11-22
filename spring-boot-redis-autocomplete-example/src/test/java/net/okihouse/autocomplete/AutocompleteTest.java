@@ -31,8 +31,8 @@ public class AutocompleteTest {
 		// step2. Add a "apple"
 		autocompleteRepository.add(apple);
 
-		// step3. Auto-complete
-		List<AutocompleteData> autocompletes = autocompleteRepository.complete("apple");
+		// step3. Get auto-complete words with prefix "a"
+		List<AutocompleteData> autocompletes = autocompleteRepository.complete("a");
 
 		Assert.assertNotNull(autocompletes);
 		Assert.assertTrue(autocompletes.size() == 1);
