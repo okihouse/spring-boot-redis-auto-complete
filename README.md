@@ -1,16 +1,26 @@
 [![Build Status](https://travis-ci.org/okihouse/spring-boot-redis-auto-complete.svg?branch=master)](https://travis-ci.org/okihouse/spring-boot-redis-auto-complete)
 
+<img src="https://raw.githubusercontent.com/okihouse/spring-boot-redis-auto-complete/master/autocomplete.gif" width="250">
+
 # Description
 This project supports the `automatic completion` of the word.
 
 Also, you can include points in the word. (like as related contents points for the Instagram)
 
-이 프로젝트는 단어 자동완성 기능을 제공합니다. 
+# Benchmark
+Each step was tested 10 times. (10k words, 100k words, 100k fixed length words)
 
-또한, 단어마다 점수를 줄 수 있습니다. (마치 인스타그램의 태그 검색의 연관된 게시글 수 표시와 비슷합니다)
+You can checkout the [Autocomplete benchmark project for details](https://github.com/okihouse/spring-boot-redis-auto-complete) and review/run the benchmarks yourself.
 
-<img src="https://raw.githubusercontent.com/okihouse/spring-boot-redis-auto-complete/master/autocomplete.gif" width="250">
+The average response rate is as follows :
 
+<img src="https://raw.githubusercontent.com/okihouse/spring-boot-redis-auto-complete/master/autocomplete_benchmark.png" width="500">
+
+<sup>
+<sup>1</sup> Environments : Local(macbook), 2.5 GHz Intel Core i7, 16GB 1600 MHz DDR3 <br/>
+<sup>2</sup> 10k words: https://github.com/first20hours/google-10000-english <br/>
+<sup>3</sup> 100k words: https://gist.github.com/h3xx/1976236 <br/>
+</sup>
 
 # How to use?
 Add the following dependency in __pom.xml__ (Java 8 maven artifact)
