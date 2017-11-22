@@ -81,5 +81,9 @@ This project depend on `spring-boot` and `spring-boot-redis` (Prerequisites)
 * [Spring boot](http://projects.spring.io/spring-boot/) 1.2.8+ (spring-boot-starter-redis)
 * [Redis](http://redis.io/) 2.4+
 
+# Note
+* ** There are many places to repair. 
+* ** All contributions are welcome.
+* ** Please use the [GitHub issue tracker](https://github.com/okihouse/spring-boot-redis-auto-complete/issues) if you have any ideas or bugs to report.
 
 
