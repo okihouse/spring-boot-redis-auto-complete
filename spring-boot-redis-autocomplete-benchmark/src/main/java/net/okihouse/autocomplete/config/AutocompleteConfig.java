@@ -18,6 +18,7 @@ public class AutocompleteConfig {
 
 	@Bean(name = {"autocompleteKeyRepository", "keyRepository"})
 	public AutocompleteKeyRepository keyRepository() {
+		// auto-complete custom key implements for test
 		AutocompleteKeyRepository keyRepository = new AutocompleteCustomKeyImpl();
 		return keyRepository;
 	}

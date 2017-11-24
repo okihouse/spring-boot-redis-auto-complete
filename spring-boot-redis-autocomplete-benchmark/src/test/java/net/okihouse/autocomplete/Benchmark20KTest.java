@@ -18,17 +18,17 @@ public class Benchmark20KTest extends BaseTest {
 		redisConnectionFactory.getConnection().flushAll();
 
 		long startTime = System.currentTimeMillis();
-		Resource resource = resourceLoader.getResource("classpath:20k.txt");
+		Resource resource = resourceLoader.getResource("classpath:20k.txt"); // Load 20k word file
 		BufferedReader in = new BufferedReader(new InputStreamReader(resource.getInputStream()));
 
-		String line = null;
-		while((line = in.readLine()) != null) {
-			if(line.isEmpty()) continue;
-			autocompleteRepository.add(line);
+		String word = null;
+		while((word = in.readLine()) != null) {
+			if(word.isEmpty()) continue;
+			autocompleteRepository.add(word);
 		}
 
 		long elapsed = System.currentTimeMillis() - startTime;
-		Long totalCount = redisConnectionFactory.getConnection().dbSize();
+		Long totalCount = redisConnectionFactory.getConnection().dbSize(); // get saved key size
 		logger.info("Add 20k words on redis. elapsed={}ms, totalCount={}", elapsed, totalCount);
 	}
 

@@ -18,7 +18,7 @@ public class Benchmark100KTest extends BaseTest {
 		redisConnectionFactory.getConnection().flushAll();
 
 		long startTime = System.currentTimeMillis();
-		Resource resource = resourceLoader.getResource("classpath:100k.txt");
+		Resource resource = resourceLoader.getResource("classpath:100k.txt"); // Load 100k word file
 		BufferedReader in = new BufferedReader(new InputStreamReader(resource.getInputStream()));
 
 		String line = null;
@@ -28,7 +28,7 @@ public class Benchmark100KTest extends BaseTest {
 		}
 
 		long elapsed = System.currentTimeMillis() - startTime;
-		Long totalCount = redisConnectionFactory.getConnection().dbSize();
+		Long totalCount = redisConnectionFactory.getConnection().dbSize(); // get saved key size
 		logger.info("Add 100k words on redis. elapsed={}ms, totalCount={}", elapsed, totalCount);
 	}
 
