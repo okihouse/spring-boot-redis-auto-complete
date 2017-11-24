@@ -7,10 +7,11 @@ This project supports the `automatic completion` of the word.
 
 Also, you can include points in the word. (like as related contents points for the Instagram)
 
+
 # Benchmark
 Each step was tested 10 times. (10k words, 100k words, 100k fixed length words)
 
-You can checkout the [Autocomplete benchmark project for details](https://github.com/okihouse/spring-boot-redis-auto-complete) and review/run the benchmarks yourself.
+You can checkout the [Autocomplete benchmark project for details](https://github.com/okihouse/spring-boot-redis-auto-complete/tree/master/spring-boot-redis-autocomplete-benchmark) and review/run the benchmarks yourself.
 
 The average response rate is as follows :
 
@@ -22,6 +23,7 @@ The average response rate is as follows :
 <sup>3</sup> 100k words: https://gist.github.com/h3xx/1976236 <br/>
 </sup>
 
+
 # How to use?
 Add the following dependency in __pom.xml__ (Java 8 maven artifact)
 ```xml
@@ -31,6 +33,7 @@ Add the following dependency in __pom.xml__ (Java 8 maven artifact)
   <version>1.0.1</version>
 </dependency>
 ```
+
 
 # Bean Configuration
 
@@ -52,6 +55,7 @@ public AutocompleteRepository autocompleteRepository(AutocompleteKeyRepository a
 }
 
 ```
+
 
 # Examples
 
@@ -83,6 +87,7 @@ public void autocomplete() throws Exception {
 }
 
 ```
+
 
 # Requirements
 This project depend on `spring-boot` and `spring-boot-redis` (Prerequisites)
