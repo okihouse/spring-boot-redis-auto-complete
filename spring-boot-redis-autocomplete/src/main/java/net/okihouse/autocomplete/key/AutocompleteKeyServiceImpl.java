@@ -24,13 +24,16 @@ public class AutocompleteKeyServiceImpl implements AutocompleteKeyRepository {
 		String firstLetter = getPrefix(trimedWord);
 
 		String generatedKey = generateKey(firstLetter, trimedWord.length());
+		
 		if(!hasKey(generatedKey, trimedWord, identifier)) {
 			stringRedisTemplate.opsForZSet().add(generatedKey, trimedWord + identifier, 1);
 			stringRedisTemplate.opsForZSet().add(generatedKey, firstLetter, 0);
+			
 			for (int index = 1; index < trimedWord.length(); index++) {
-				stringRedisTemplate.opsForZSet().add(generatedKey, trimedWord.substring(0, index - 1), 0);
+				stringRedisTemplate.opsForZSet().add(generatedKey, trimedWord.substring(0, index), 0);
 			}
 		}
+		
 		return generatedKey;
 	}
 
@@ -43,11 +46,13 @@ public class AutocompleteKeyServiceImpl implements AutocompleteKeyRepository {
 	@Override
 	public double incr(final String word, final String identifier) {
 		Assert.hasLength(word, "Word cannot be empty or null");
+		
 		String trimedWord =  word.trim();
 		String firstLetter = getPrefix(trimedWord);
 
 		String generatedKey = generateKey(firstLetter, trimedWord.length());
 		if(!hasKey(generatedKey, trimedWord, identifier)) return 0;
+		
 		return stringRedisTemplate.opsForZSet().incrementScore(generatedKey, trimedWord + identifier, 1);
 	}
 
