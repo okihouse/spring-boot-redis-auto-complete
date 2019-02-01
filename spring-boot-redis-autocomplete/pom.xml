@@ -2,7 +2,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.okihouse</groupId>
 	<artifactId>autocomplete</artifactId>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<name>Autocomplete Words</name>
 	<description>Autocomplete with spring-boot-redis</description>
 	<packaging>jar</packaging>
@@ -148,6 +148,14 @@
 			</activation>
 			<build>
 				<plugins>
+					<plugin>
+						<artifactId>maven-compiler-plugin</artifactId>
+						<version>3.1</version>
+						<configuration>
+							<fork>true</fork>
+							<executable>C:\Program Files\Java\jdk1.8.0_191\bin\javac.exe</executable>
+						</configuration>
+					</plugin>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-gpg-plugin</artifactId>
