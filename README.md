@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/okihouse/spring-boot-redis-auto-complete.svg?branch=master)](https://travis-ci.org/okihouse/spring-boot-redis-auto-complete)
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.okihouse/autocomplete/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.okihouse/autocomplet)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.okihouse/autocomplete/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.okihouse/autocomplete)
 
 <img src="https://raw.githubusercontent.com/okihouse/spring-boot-redis-auto-complete/master/autocomplete.gif" width="250">
 
